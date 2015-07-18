@@ -6,3 +6,5 @@ class window.AppView extends Backbone.View
     @$el.children().detach()
     @$el.html new GameModelView(model: new GameModel()).el
 
+  events:
+    'click .retry-button': -> @render()

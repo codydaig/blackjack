@@ -7,10 +7,15 @@ class window.HandView extends Backbone.View
     @collection.on 'add remove change', => @render()
     @collection.on 'busted', =>
       if @collection.isDealer
+        @trigger 'win', @
         alert "Player wins"
       else
+        @trigger 'lose', @
         alert "Dealer wins"
     @render()
+
+    if @collection.bestScore() == 21
+      alert "Blackjack!"
 
 
   render: ->
@@ -19,4 +24,5 @@ class window.HandView extends Backbone.View
     @$el.append @collection.map (card) ->
       new CardView(model: card).$el
     @$('.score').text @collection.scores()[0]
+
 

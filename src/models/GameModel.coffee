@@ -10,7 +10,9 @@ class window.GameModel extends Backbone.Model
       dealer = @get 'dealerHand' 
       dealer.handleDealer()
     @get('dealerHand').on "finished", => 
-      if @get('dealerHand').bestScore() > @get('playerHand').bestScore()
+      if @get('dealerHand').bestScore() == @get('playerHand').bestScore()
+        alert "Tie!"
+      else if @get('dealerHand').bestScore() > @get('playerHand').bestScore()
         alert "Dealer wins with high score"
       else
         alert "Player wins with high score"
