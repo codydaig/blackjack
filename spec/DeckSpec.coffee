@@ -1,6 +1,6 @@
 assert = chai.assert
 
-describe 'deck', ->
+describe 'Deck', ->
   deck = null
   hand = null
 
@@ -8,7 +8,7 @@ describe 'deck', ->
     deck = new Deck()
     hand = deck.dealPlayer()
 
-  describe 'hit', ->
+  describe 'Hit', ->
     it 'should give the last card from the deck', ->
       assert.strictEqual deck.length, 50
       assert.strictEqual deck.last(), hand.hit()

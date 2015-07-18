@@ -53,14 +53,18 @@ describe "Hand Test", ->
     hand.handleDealer()
     expect(hand.at(0).flip.callCount).to.be.equal(0)
 
-  it 'should hit the card when score is less than 17', ->
+  it 'best score should be less than 17', ->
     deck = new Deck()
     hand = deck.dealPlayer()
     # Override the cards in the hard with set values (5,2)
     hand.at(0).set('value', 5)
     hand.at(1).set('value', 2)
     spy = sinon.spy(hand, "handleDealer")
-    expect(hand.at(0).bestScore()).to.be.greater(0)
+    hand.handleDealer()
+    expect(hand.bestScore()).to.be.below(17)
+
+
+  it 'should hit the card when score is less than 17', ->
     # Set a spy on hit()
 
     # call handleDealer()
@@ -70,6 +74,34 @@ describe "Hand Test", ->
     # check to make sure hit has been called at least once
 
     # 
+    deck = new Deck()
+    hand = deck.dealDealer()
+    # Override the cards in the hard with set values (5,2)
+    hand.at(0).set('value', 5)
+    hand.at(1).set('value', 2)
+    spy = sinon.spy(hand, "hit")
+    hand.handleDealer()
+    expect(hand.hit.callCount).to.be.above(0)
+
+  it 'trigger finished when score as soon as score goes over 21', ->
+    deck = new Deck()
+    hand = deck.dealDealer()
+ 
+    hand.on 'finished', ->
+      assert(true);
+    hand.handleDealer();
+
+  it 'bestScore should return best of two score', ->
+    deck = new Deck()
+    hand = deck.dealPlayer()
+ 
+    hand.at(0).set('value', 2)
+    hand.at(1).set('value', 1)
+    spy = sinon.spy(hand, "bestScore")
+    expect(hand.bestScore()).to.be.equal(13)
+
+
+
     #spy = sinon.spy(hand.at(0), "flip")
     #hand.handleDealer()
     #expect(hand.at(0).flip.callCount).to.be.equal(0)
