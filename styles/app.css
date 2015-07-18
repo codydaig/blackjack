@@ -1,3 +1,12 @@
+
+body {
+  background-image: url('../img/background.jpg');
+  background-size: 40%;
+  -webkit-transition: background-image 2s;
+  transition: background-image 1s;
+}
+
+
 .card {
   float: left;
   border: solid 1px black;
@@ -5,6 +14,7 @@
   border-radius: 5px;
   height: 140px;
   margin-right: 20px;
+  margin: 10px;
 }
 
 .covered {
@@ -95,13 +105,111 @@
   background-size: 100px 140px;
 }
 
-.gameArea {
-  border: solid 5px black;
+body {
+  background-color: rgba(0,100,0,0.7);
+}
+
+.card {
+  float: left;
+  border: solid 1px black;
+  width: 100px;
   border-radius: 5px;
+  height: 140px;
+  margin-right: 20px;
+}
+.gamearea{
+
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
+  width: 400px;
+  margin: 10% auto;
+  padding: 20px 10px 30px 40px;
+
+}
+
+.hit-button:hover,
+.retry-button:hover {
+  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #c62d1f), color-stop(1, #f24537));
+  background:-moz-linear-gradient(top, #c62d1f 5%, #f24537 100%);
+  background:-webkit-linear-gradient(top, #c62d1f 5%, #f24537 100%);
+  background:-o-linear-gradient(top, #c62d1f 5%, #f24537 100%);
+  background:-ms-linear-gradient(top, #c62d1f 5%, #f24537 100%);
+  background:linear-gradient(to bottom, #c62d1f 5%, #f24537 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#c62d1f', endColorstr='#f24537',GradientType=0);
+  background-color:#c62d1f;
+}
+.hit-button:active,
+.retry-button:active {
+  position:relative;
+  top:1px;
+}
+
+.stand-button:hover {
+  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #1e62d0), color-stop(1, #3d94f6));
+  background:-moz-linear-gradient(top, #1e62d0 5%, #3d94f6 100%);
+  background:-webkit-linear-gradient(top, #1e62d0 5%, #3d94f6 100%);
+  background:-o-linear-gradient(top, #1e62d0 5%, #3d94f6 100%);
+  background:-ms-linear-gradient(top, #1e62d0 5%, #3d94f6 100%);
+  background:linear-gradient(to bottom, #1e62d0 5%, #3d94f6 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#1e62d0', endColorstr='#3d94f6',GradientType=0);
+  background-color:#1e62d0;
+}
+.stand-button:active {
+  position:relative;
+  top:1px;
+}
+
+.hit-button{
+  margin-left: 65px;
+}
+
+.hit-button,
+.stand-button {
+  width: 100px;
+  height: 50px;
+  }
+
+.img.cardimage{
+  margin-top: 20px;
+}
+
+newGameLose,
+.newGameWin {
+  position: fixed;
+  width: 860px;
+  height: 525px;
+  margin: -30px;
+  text-align: center;
+}
+
+.newGameLose {
+  background-color: rgba(200, 0, 0, 0.6);
+}
+.newGameWin {
+  background-color: rgba(0, 200, 0, 0.6);
+}
+
+.gameMessage {
+  background-repeat: no-repeat;
+  background-position: center center;
   margin: 0 auto;
-  margin-top: 75px;
-  padding: 30px;
-  width: 800px;
-  height: 465px;
-  background-image: url(../img/background.png);
+  margin-top: 150px;
+  margin-bottom: 50px;
+  height: 75px;
+  border-radius: 10px;
+  background-color: rgba(255,255,255, 0.9);
+  width: 80%;
+  vertical-align: middle;
+  font-size: 30pt;
+  padding: 10px;
+}
+
+.loseMessage { 
+
+  background-image: url(../img/lose.png);
+}
+
+.winMessage {
+  background-image: url(../img/win.png);
+  
 }
