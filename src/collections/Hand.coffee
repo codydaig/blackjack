@@ -4,20 +4,30 @@ class window.Hand extends Backbone.Collection
   initialize: (array, @deck, @isDealer) ->
 
   hit: ->
-    @add(@deck.pop())
+    theCard = @deck.pop()
+    @add(theCard)
     if @minScore() > 21 
       @trigger "busted"
+    theCard
+
 
   hasAce: -> @reduce (memo, card) ->
     memo or card.get('value') is 1
   , 0
 
   handleDealer: -> 
-    @isDealer = true
+    if @isDealer
+      @at(0).flip()
+      @hit() while @minScore() < 17
+      if @minScore() <= 21
+          @trigger "finished"
+
 
   minScore: -> @reduce (score, card) ->
     score + if card.get 'revealed' then card.get 'value' else 0
   , 0
+
+  bestScore: -> Math.max(@scores()[0], @scores()[1])
 
   scores: ->
     # The scores are an array of potential scores.
@@ -27,6 +37,6 @@ class window.Hand extends Backbone.Collection
 
   stand: -> 
     console.log "hand to dealer"
-    
+    @trigger "handToDealer"
 
 
