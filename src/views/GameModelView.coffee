@@ -6,14 +6,14 @@ class window.GameModelView extends Backbone.View
     <div class="dealer-hand-container"></div>
     </div>
     '
-  # messageTemplate: _.template '
-  #   <div>
-  #   <div class = "message"><%= message %=>
-  #   </div>
-  #   <button class = "retry-button">Play Again?
-  #   </button>
-  #   </div>
-  #   '
+  messageTemplate: _.template '
+    <div>
+    <div class = "gameMessage <%= cl %>"><%= message %>
+    </div>
+    <button class = "retry-button">Play Again?
+    </button>
+    </div>
+    '
 
   # loseTemplate: _.template '
   #   <div class ="gameLose">
@@ -40,12 +40,10 @@ class window.GameModelView extends Backbone.View
     'click .stand-button': -> 
       @model.get('playerHand').stand()
       @trigger "stand"
-    'win': -> @renderWinMessage()
-    'lose': -> @renderLoseMessage()
 
   initialize: ->
-    @model.on 'win', @renderWin, @
-    @model.on 'lose', @renderLose, @
+    @model.on 'win', @renderWinMessage, @
+    @model.on 'lose', @renderLoseMessage, @
     @model.on 'replay', @render, @
     @render()
 
@@ -56,9 +54,11 @@ class window.GameModelView extends Backbone.View
     @$('.dealer-hand-container').html new HandView(collection: @model.get 'dealerHand').el
 
   renderWinMessage: ->
-    ('.hit-button').prop('disabled', true)
-    ('.stand-button').prop('disabled', true)
-    $el.prepend(@messageTemplate({message: "YOU WIN!"}))
+    console.log 'i win!'
+    $('.hit-button').prop('disabled', true)
+    $('.stand-button').prop('disabled', true)
+    #$('#gameMessage').addClass('winMessage')
+    @$el.prepend(@messageTemplate({message: "YOU WIN!", cl:'winMessage'}))
 
   renderLoseMessage: ->
     ('.hit-button').prop('disabled', true)

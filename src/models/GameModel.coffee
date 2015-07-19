@@ -13,6 +13,7 @@ class window.GameModel extends Backbone.Model
       if @get('dealerHand').bestScore() == @get('playerHand').bestScore()
         alert "Tie!"
       else if @get('dealerHand').bestScore() > @get('playerHand').bestScore()
+        @trigger 'win'
         alert "Dealer wins with high score"
       else
         alert "Player wins with high score"

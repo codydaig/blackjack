@@ -100,7 +100,10 @@ describe "Hand Test", ->
     spy = sinon.spy(hand, "bestScore")
     expect(hand.bestScore()).to.be.equal(13)
 
-
+  it 'should trigger finished if initial score is a Blackjack', ->
+    deck = new Deck()
+    desk.at()
+    hand = deck.dealPlayer()
 
     #spy = sinon.spy(hand.at(0), "flip")
     #hand.handleDealer()

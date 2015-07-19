@@ -7,10 +7,10 @@ class window.HandView extends Backbone.View
     @collection.on 'add remove change', => @render()
     @collection.on 'busted', =>
       if @collection.isDealer
-        @trigger 'win', @
+        @trigger 'win'
         alert "Player wins"
       else
-        @trigger 'lose', @
+        @trigger 'lose'
         alert "Dealer wins"
     @render()
 
